@@ -24,25 +24,25 @@ public class moveCube : MonoBehaviour
     {
         if(right)
         {
-            leftRight+=5;
+            leftRight++;
             Debug.Log("Right");
             right = false;
         }
         if (left)
         {
-            leftRight-=5;
+            leftRight--;
             Debug.Log("Left");
             left = false;
         }
         if(forw)
         {
-            frontBack+=5;
+            frontBack++;
             Debug.Log("Forwards");
             forw = false;
         }
         if (backw)
         {
-            frontBack-=5;
+            frontBack--;
             Debug.Log("Backwards");
             backw = false;
         }
