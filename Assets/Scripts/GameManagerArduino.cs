@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManagerArduino : MonoBehaviour
 {
-    public Transform controlledObject;
+    //public Transform controlledObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,18 +18,18 @@ public class GameManagerArduino : MonoBehaviour
     }
     public void MoveControlledObjectRight()
     {
-        controlledObject.position += controlledObject.right.normalized;
+        transform.position = new Vector3(0, 0, +1.0f);
     }
     public void MoveControlledObjectLeft()
     {
-        controlledObject.position -= controlledObject.right.normalized;
+        transform.position -= transform.right.normalized;
     }
     public void MoveControlledObjectForward()
     {
-        controlledObject.position += controlledObject.forward.normalized;
+        transform.position += transform.forward.normalized;
     }
     public void MoveControlledObjectBackward()
     {
-        controlledObject.position -= controlledObject.forward.normalized;
+        transform.position -= transform.forward.normalized;
     }
 }

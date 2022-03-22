@@ -43,19 +43,19 @@ public class SerialCommThreaded : MonoBehaviour
     {
         if (inputChar == "R")
         {
-            gameMgrArd.MoveControlledObjectRight();
+            moveCube.right = true;
         }
         if (inputChar == "L")
         {
-            gameMgrArd.MoveControlledObjectLeft();
+            moveCube.left = true;
         }
         if (inputChar == "F")
         {
-            gameMgrArd.MoveControlledObjectForward();
+            moveCube.forw = true;
         }
         if (inputChar == "B")
         {
-            gameMgrArd.MoveControlledObjectBackward();
+            moveCube.backw = true;
         }
     }
 
