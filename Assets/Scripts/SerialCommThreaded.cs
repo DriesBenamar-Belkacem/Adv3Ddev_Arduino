@@ -19,136 +19,44 @@ using System;
 public class SerialCommThreaded : MonoBehaviour
 {
     public GameManagerArduino gameMgrArd;
-    public SerialPort sp = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
-    private bool blnPortcanopen = false; //if portcanopen is true the selected comport is open
-
-    //statics to communicate with the serial com thread
-    static private int databyte_in; //read databyte from serial port
-    static private bool databyteRead = false; //becomes true if there is indeed a character received
-    static private int databyte_out; //index in txChars array of possible characters to send
-    static private bool databyteWrite = false; //to let the serial com thread know there is a byte to send
-    //txChars contains the characters to send: we have to use the index
-    private char[] txChars = { 'A', 'U' };
-
-    //threadrelated
-    private bool stopSerialThread = false; //to stop the thread
-    private Thread readWriteSerialThread; //threadvariabele
-
+    public SerialPort data_stream = new SerialPort("COM3", 9600);
+    public string receivedstring;
+    public int recv_angl;
     void Start()
     {
-        OpenConnection(); //init COMPort
-                          //define thread and start it
-        readWriteSerialThread = new Thread(SerialThread);
-        readWriteSerialThread.Start(); //start thread
+        data_stream.Open();
     }
 
     void Update()
     {
-        if (databyteRead) //if a databyte is received
-        {
-            databyteRead = false; //to see if a next databyte is received
-            Debug.Log((char)databyte_in);
-            HandleInput((char)databyte_in);
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            databyte_out = 0; //index in txChars
-            databyteWrite = true;
-
-        }
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            databyte_out = 1; //index in txChars
-            databyteWrite = true;
-        }
+        receivedstring = data_stream.ReadLine();
+        string[] datas = receivedstring.Split(',');
+        //convert string to float
+        recv_angl = Mathf.RoundToInt(float.Parse(datas[0]));
+        string inp = datas[1];
+       
+        HandleInput(inp);
+        Debug.Log(recv_angl + datas[1]);
     }
-
-    void HandleInput(char inputChar)
+    
+    void HandleInput(string inputChar)
     {
-        if (inputChar == 'R')
+        if (inputChar == "R")
         {
             gameMgrArd.MoveControlledObjectRight();
         }
-        if (inputChar == 'L')
+        if (inputChar == "L")
         {
             gameMgrArd.MoveControlledObjectLeft();
         }
-        if (inputChar == 'F')
+        if (inputChar == "F")
         {
             gameMgrArd.MoveControlledObjectForward();
         }
-        if (inputChar == 'B')
+        if (inputChar == "B")
         {
             gameMgrArd.MoveControlledObjectBackward();
         }
     }
 
-
-    void SerialThread() //separate thread is needed because we need to wait sp.ReadTimeout = 20 ms to see if a byte is received
-    {
-        while (!stopSerialThread) //close thread on exit program
-        {
-            if (blnPortcanopen)
-            {
-                if (databyteWrite)
-                {
-                    sp.Write(txChars, databyte_out, 1); //tx 'A'
-                    databyteWrite = false; //to be able to send again
-                }
-                try //trying something to receive takes 20 ms = sp.ReadTimeout
-                {
-                    databyte_in = sp.ReadChar();
-                    databyteRead = true;
-                }
-                catch (Exception)
-                {
-                    //Debug.Log(e.Message);
-                }
-            }
-        }
-    }
-
-
-    //Function connecting to Arduino
-    public void OpenConnection()
-    {
-        if (sp != null)
-        {
-            if (sp.IsOpen)
-            {
-                string message = "Port is already open!";
-                Debug.Log(message);
-            }
-            else
-            {
-                try
-                {
-                    sp.Open();  // opens the connection
-                    blnPortcanopen = true;
-                }
-                catch (Exception e)
-                {
-                    Debug.Log(e.Message);
-                    blnPortcanopen = false;
-                }
-                if (blnPortcanopen)
-                {
-                    sp.ReadTimeout = 20;  // sets the timeout value before reporting error
-                    Debug.Log("Port Opened!");
-                }
-            }
-        }
-        else
-        {
-            Debug.Log("Port == null");
-        }
-    }
-
-
-    void OnApplicationQuit() //proper afsluiten van de thread
-    {
-        if (sp != null) sp.Close();
-        stopSerialThread = true;
-        readWriteSerialThread.Abort();
-    }
 }
