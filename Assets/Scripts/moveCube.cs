@@ -17,12 +17,13 @@ public class moveCube : MonoBehaviour
         frontBack = 0;
         leftRight = 0;
         transform.position = new Vector3(0, 0, 0);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
-    
+
     void Update()
     {
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        
         if (right)
         {
             leftRight++;
@@ -37,7 +38,7 @@ public class moveCube : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, +10);
             left = false;
         }
-        if(forw)
+        if (forw)
         {
             frontBack++;
             Debug.Log("Forwards");
@@ -52,6 +53,10 @@ public class moveCube : MonoBehaviour
 
             backw = false;
         }
-        transform.position = new Vector3(leftRight, potValue.recv_angl,frontBack);
+        transform.position = new Vector3(leftRight, (potValue.recv_angl / 10) + 0.2f, frontBack);
+        if(potValue.recv_angl>=5)
+        {
+            Debug.Log('t');
+        }
     }
 }

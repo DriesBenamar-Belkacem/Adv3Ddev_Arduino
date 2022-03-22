@@ -28,6 +28,6 @@ public class rotateFans : MonoBehaviour
         {
             incr += 0.1f;
         }
-        Debug.Log(incr += potentio.recv_angl);
+        //Debug.Log(incr += potentio.recv_angl);
     }
 }

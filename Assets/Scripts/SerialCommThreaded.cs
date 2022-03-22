@@ -36,7 +36,7 @@ public class SerialCommThreaded : MonoBehaviour
         string inp = datas[1];
        
         HandleInput(inp);
-        Debug.Log(recv_angl + datas[1]);
+        //Debug.Log(recv_angl + datas[1]);
     }
     
     void HandleInput(string inputChar)
