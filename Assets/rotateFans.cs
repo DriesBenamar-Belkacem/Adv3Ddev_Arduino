@@ -9,14 +9,25 @@ public class rotateFans : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.rotation = Quaternion.Euler(0, 0,0);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        incr+=(potentio.recv_angl/10);
         transform.rotation = Quaternion.Euler(0, incr, 0);
+        if (potentio.recv_angl > 1 && potentio.recv_angl < 10)
+        {
+            incr += 10;
+        }
+        if (potentio.recv_angl > 10)
+        {
+            incr += 25;
+        }
+        if (potentio.recv_angl <= 0)
+        {
+            incr += 0.1f;
+        }
         Debug.Log(incr += potentio.recv_angl);
     }
 }
