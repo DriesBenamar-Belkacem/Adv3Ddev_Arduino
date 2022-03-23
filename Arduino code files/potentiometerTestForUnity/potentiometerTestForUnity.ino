@@ -17,6 +17,7 @@ void setup()
 
 void loop()
 {
+  char data = Serial.read();
   test = ' ';
   if (digitalRead(RIGHT) == LOW)
   {
@@ -38,12 +39,46 @@ void loop()
     test = 'B';
     delay(50); //debounce
   }
-  if (Serial.available() > 0)
+
+  if (data == 't')
   {
-    if (Serial.read()=='t')
-    {
-      digitalWrite(LED, HIGH);
-    }
+    digitalWrite(LED, HIGH);
+  }
+
+
+  if (data == 'o')
+  {
+    digitalWrite(LED, LOW);
+  }
+
+
+  if (data == 'b')
+  {
+    digitalWrite(LED, HIGH);
+    delay(250);
+    digitalWrite(LED, LOW);
+    delay(250);
+    digitalWrite(LED, HIGH);
+    delay(250);
+    digitalWrite(LED, LOW);
+    delay(250);
+    digitalWrite(LED, HIGH);
+    delay(250);
+    digitalWrite(LED, LOW);
+    delay(250);
+    digitalWrite(LED, HIGH);
+    delay(250);
+    digitalWrite(LED, LOW);
+    delay(250);
+    digitalWrite(LED, HIGH);
+    delay(250);
+    digitalWrite(LED, LOW);
+    delay(250);
+    digitalWrite(LED, HIGH);
+    delay(250);
+    digitalWrite(LED, LOW);
+    delay(250);
+
   }
   float volt = analogRead(A0);
   volt = map(volt, 0, 1023, 0, 100);

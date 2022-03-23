@@ -37,6 +37,18 @@ public class SerialCommThreaded : MonoBehaviour
        
         HandleInput(inp);
         //Debug.Log(recv_angl + datas[1]);
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            data_stream.Write("t");//alles opkuisen en booleans gebruiken
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            data_stream.Write("o");//alles opkuisen en booleans gebruiken
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            data_stream.Write("b");//alles opkuisen en booleans gebruiken
+        }
     }
     
     void HandleInput(string inputChar)

@@ -28,14 +28,14 @@ public class moveCube : MonoBehaviour
     {
 
         float y;
-        if (rotateFans.isFlying&&rotateFans.isFlyingHigh)
-        {
+        //if (rotateFans.isFlying&&rotateFans.isFlyingHigh)
+        //{
             y = Mathf.PingPong(Time.time * speed, 0.2f) * 6 - 3;
-        }
-        else
-        {
-            y = 0;
-        }
+        //}
+        //else
+        //{
+        //    y = 0;
+        //}
 
         //heightOffset+=0.01f;
         count++;
@@ -80,10 +80,10 @@ public class moveCube : MonoBehaviour
 
         }
         transform.position = new Vector3(leftRight, (potValue.recv_angl / 10) + (y + 5), frontBack);
-        if (potValue.recv_angl >= 5)
-        {
-            Debug.Log('t');
-        }
+        //if (potValue.recv_angl >= 5)
+        //{
+        //    Debug.Log('t');
+        //}
 
 
     }

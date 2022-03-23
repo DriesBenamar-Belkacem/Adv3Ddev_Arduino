@@ -18,23 +18,24 @@ public class rotateFans : MonoBehaviour
     void Update()
     {
         transform.rotation = Quaternion.Euler(0, incr, 0);
-        if (potentio.recv_angl > 1 && potentio.recv_angl < 10)
-        {
-            incr += 1;
-            isFlying = true;
-            isFlyingHigh = true;
-        }
-        if (potentio.recv_angl > 10)
-        {
-            incr += 25;
-            isFlying = true;
-            isFlyingHigh = false;
-        }
-        if (potentio.recv_angl <= 0)
-        {
-            incr += 0.1f;
-            isFlying = false;
-        }
-        Debug.Log(potentio.recv_angl);
+        //if (potentio.recv_angl > 1 && potentio.recv_angl < 10)
+        //{
+        //    incr += 1;
+        //    isFlying = true;
+        //    isFlyingHigh = true;
+        //}
+        //if (potentio.recv_angl > 10)
+        //{
+        //    incr += 25;
+        //    isFlying = true;
+        //    isFlyingHigh = false;
+        //}
+        //if (potentio.recv_angl <= 0)
+        //{
+        //    incr += 0.1f;
+        //    isFlying = false;
+        //}
+        incr += 25;
+        //Debug.Log(potentio.recv_angl);
     }
 }
