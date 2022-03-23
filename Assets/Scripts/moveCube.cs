@@ -56,7 +56,7 @@ public class moveCube : MonoBehaviour
         }
         if (forw)
         {
-            frontBack++;
+            frontBack+=5;
             Debug.Log("Forwards");
             transform.rotation = Quaternion.Euler(+10, 0, 0);
             forw = false;
@@ -79,7 +79,7 @@ public class moveCube : MonoBehaviour
             //}
 
         }
-        transform.position = new Vector3(leftRight, (potValue.recv_angl / 10) + (y + 5), frontBack);
+        transform.position = new Vector3(leftRight, (potValue.recv_angl / 2.5f) + (y + 5), frontBack);
         //if (potValue.recv_angl >= 5)
         //{
         //    Debug.Log('t');
