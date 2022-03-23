@@ -281,7 +281,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1213872, y: 1}
+    m_SensorSize: {x: 2.0859046, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -297,7 +297,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604665532}
-  m_LocalRotation: {x: 0.18357764, y: -0.0000000055634617, z: 0.0000000010389845, w: 0.9830052}
+  m_LocalRotation: {x: 0.18357763, y: -0.00000002425596, z: 0.0000000045298356, w: 0.9830052}
   m_LocalPosition: {x: 0, y: 4.0699997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -530,6 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 379608c94ee1ec64eb22d961718567df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
   potValue: {fileID: 1500699258}
 --- !u!65 &895736181
 BoxCollider:
@@ -686,7 +687,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.18357764, y: -0.0000000055634617, z: 0.0000000010389845, w: 0.9830052}
+  m_LocalRotation: {x: 0.18357763, y: -0.00000002425596, z: 0.0000000045298356, w: 0.9830052}
   m_LocalPosition: {x: 0, y: 4.0699997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1079,6 +1080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 379608c94ee1ec64eb22d961718567df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.5
   potValue: {fileID: 1500699258}
 --- !u!4 &161515780933156933
 Transform:

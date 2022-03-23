@@ -10,6 +10,9 @@ public class moveCube : MonoBehaviour
     public static bool backw = false;
     int frontBack;
     int leftRight;
+    //float heightOffset = 0.2f;
+    public float speed;
+    int count = 0;
 
     public SerialCommThreaded potValue;
     void Start()
@@ -23,7 +26,20 @@ public class moveCube : MonoBehaviour
 
     void Update()
     {
-        
+
+        float y;
+        if (rotateFans.isFlying&&rotateFans.isFlyingHigh)
+        {
+            y = Mathf.PingPong(Time.time * speed, 0.2f) * 6 - 3;
+        }
+        else
+        {
+            y = 0;
+        }
+
+        //heightOffset+=0.01f;
+        count++;
+        transform.rotation = Quaternion.Euler(0, 0, 0);
         if (right)
         {
             leftRight++;
@@ -53,10 +69,22 @@ public class moveCube : MonoBehaviour
 
             backw = false;
         }
-        transform.position = new Vector3(leftRight, (potValue.recv_angl / 10) + 0.2f, frontBack);
-        if(potValue.recv_angl>=5)
+        if (!right && !left && !forw && !backw)
+        {
+            //if (count > 5)
+            //{
+            //    //heightOffset-=0.01f;
+            //    //heightOffset = 0.2f;
+            //    count = 0;
+            //}
+
+        }
+        transform.position = new Vector3(leftRight, (potValue.recv_angl / 10) + (y + 5), frontBack);
+        if (potValue.recv_angl >= 5)
         {
             Debug.Log('t');
         }
+
+
     }
 }

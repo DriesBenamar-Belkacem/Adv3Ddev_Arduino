@@ -6,6 +6,8 @@ public class rotateFans : MonoBehaviour
 {
     float incr = 1;
     public SerialCommThreaded potentio;
+    public static bool isFlying;
+    public static bool isFlyingHigh;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,16 +20,21 @@ public class rotateFans : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, incr, 0);
         if (potentio.recv_angl > 1 && potentio.recv_angl < 10)
         {
-            incr += 10;
+            incr += 1;
+            isFlying = true;
+            isFlyingHigh = true;
         }
         if (potentio.recv_angl > 10)
         {
             incr += 25;
+            isFlying = true;
+            isFlyingHigh = false;
         }
         if (potentio.recv_angl <= 0)
         {
             incr += 0.1f;
+            isFlying = false;
         }
-        //Debug.Log(incr += potentio.recv_angl);
+        Debug.Log(potentio.recv_angl);
     }
 }
