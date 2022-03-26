@@ -41,28 +41,28 @@ public class moveCube : MonoBehaviour
         //heightOffset+=0.01f;
         count++;
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        if (right && !Collided)
+        if (right/* && !Collided*/)
         {
             leftRight++;
             Debug.Log("Right");
             transform.rotation = Quaternion.Euler(0, 0, -10);
             right = false;
         }
-        if (left && !Collided)
+        if (left /*&& !Collided*/)
         {
             leftRight--;
             Debug.Log("Left");
             transform.rotation = Quaternion.Euler(0, 0, +10);
             left = false;
         }
-        if (forw && !Collided)
+        if (forw/* && !Collided*/)
         {
             frontBack += 5;
             Debug.Log("Forwards");
             transform.rotation = Quaternion.Euler(+10, 0, 0);
             forw = false;
         }
-        if (backw && !Collided)
+        if (backw/* && !Collided*/)
         {
             frontBack--;
             Debug.Log("Backwards");
@@ -82,8 +82,15 @@ public class moveCube : MonoBehaviour
         }
         transform.position = new Vector3(leftRight, (potValue.recv_angl / 2.5f) + (y + 5), frontBack);
         if (Collided)
+        {            
+            frontBack = 0;
+            leftRight = 0;
+            potValue.recv_angl = 0;
+            
+        }
+        if(SerialCommThreaded.restart)
         {
-            transform.position = new Vector3(0, 0, 0);
+            Collided = false;
         }
         //if (potValue.recv_angl >= 5)
         //{

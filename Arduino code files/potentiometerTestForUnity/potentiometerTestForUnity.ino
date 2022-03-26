@@ -2,6 +2,7 @@
 #define LEFT 9
 #define FRONT 7
 #define BACK 6
+#define RESTART 11
 char test;
 #define LED 13
 void setup()
@@ -12,6 +13,7 @@ void setup()
   pinMode(LEFT, INPUT_PULLUP);
   pinMode(FRONT, INPUT_PULLUP);
   pinMode(BACK, INPUT_PULLUP);
+  pinMode(RESTART, INPUT_PULLUP);
   pinMode(LED, OUTPUT);
 }
 
@@ -19,6 +21,11 @@ void loop()
 {
   char data = Serial.read();
   test = ' ';
+  if (digitalRead(RESTART) == LOW)
+  {
+    test = 'X';
+    delay(50); //debounce
+  }
   if (digitalRead(RIGHT) == LOW)
   {
     test = 'R';
@@ -44,7 +51,6 @@ void loop()
   {
     digitalWrite(LED, HIGH);
   }
-
 
   if (data == 'o')
   {

@@ -20,6 +20,7 @@ public class SerialCommThreaded : MonoBehaviour
 {
     public GameManagerArduino gameMgrArd;
     public SerialPort data_stream = new SerialPort("COM3", 9600);
+    public static bool restart = false;
     public string receivedstring;
     public int recv_angl;
     void Start()
@@ -37,18 +38,18 @@ public class SerialCommThreaded : MonoBehaviour
        
         HandleInput(inp);
         //Debug.Log(recv_angl + datas[1]);
-        if (Input.GetKeyDown(KeyCode.T))
+        if (moveCube.Collided)
         {
             data_stream.Write("t");//alles opkuisen en booleans gebruiken
         }
-        if (Input.GetKeyDown(KeyCode.O))
+        if (SerialCommThreaded.restart)
         {
             data_stream.Write("o");//alles opkuisen en booleans gebruiken
         }
-        if (moveCube.Collided)
-        {
-            data_stream.Write("b");//alles opkuisen en booleans gebruiken
-        }
+        //if (moveCube.Collided)
+        //{
+        //    data_stream.Write("t");//alles opkuisen en booleans gebruiken
+        //}
     }
     
     void HandleInput(string inputChar)
@@ -68,6 +69,11 @@ public class SerialCommThreaded : MonoBehaviour
         if (inputChar == "B")
         {
             moveCube.backw = true;
+        }
+        if (inputChar == "X")
+        {
+            restart = true;
+            Debug.Log("restarting...");
         }
     }
 

@@ -17,13 +17,14 @@ public class DontHitObstacles : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(moveCube.Collided)
+        if(moveCube.Collided&&!WatchOut.enabled)
         {
             WatchOut.enabled = true;            
         }
-        else if(moveCube.right|| moveCube.left || moveCube.forw || moveCube.backw)
+        if (SerialCommThreaded.restart && WatchOut.enabled)
         {
-            WatchOut.enabled = true;
+            WatchOut.enabled = false;
+            SerialCommThreaded.restart = false;
         }
     }
     
