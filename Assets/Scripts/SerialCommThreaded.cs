@@ -45,7 +45,7 @@ public class SerialCommThreaded : MonoBehaviour
         {
             data_stream.Write("o");//alles opkuisen en booleans gebruiken
         }
-        if (Input.GetKeyDown(KeyCode.B))
+        if (moveCube.Collided)
         {
             data_stream.Write("b");//alles opkuisen en booleans gebruiken
         }

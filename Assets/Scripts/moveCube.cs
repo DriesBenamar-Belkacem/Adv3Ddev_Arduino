@@ -10,6 +10,7 @@ public class moveCube : MonoBehaviour
     public static bool backw = false;
     int frontBack;
     int leftRight;
+    public static bool Collided = false;
     //float heightOffset = 0.2f;
     public float speed;
     int count = 0;
@@ -30,7 +31,7 @@ public class moveCube : MonoBehaviour
         float y;
         //if (rotateFans.isFlying&&rotateFans.isFlyingHigh)
         //{
-            y = Mathf.PingPong(Time.time * speed, 0.2f) * 6 - 3;
+        y = Mathf.PingPong(Time.time * speed, 0.2f) * 6 - 3;
         //}
         //else
         //{
@@ -40,28 +41,28 @@ public class moveCube : MonoBehaviour
         //heightOffset+=0.01f;
         count++;
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        if (right)
+        if (right && !Collided)
         {
             leftRight++;
             Debug.Log("Right");
             transform.rotation = Quaternion.Euler(0, 0, -10);
             right = false;
         }
-        if (left)
+        if (left && !Collided)
         {
             leftRight--;
             Debug.Log("Left");
             transform.rotation = Quaternion.Euler(0, 0, +10);
             left = false;
         }
-        if (forw)
+        if (forw && !Collided)
         {
-            frontBack+=5;
+            frontBack += 5;
             Debug.Log("Forwards");
             transform.rotation = Quaternion.Euler(+10, 0, 0);
             forw = false;
         }
-        if (backw)
+        if (backw && !Collided)
         {
             frontBack--;
             Debug.Log("Backwards");
@@ -80,6 +81,10 @@ public class moveCube : MonoBehaviour
 
         }
         transform.position = new Vector3(leftRight, (potValue.recv_angl / 2.5f) + (y + 5), frontBack);
+        if (Collided)
+        {
+            transform.position = new Vector3(0, 0, 0);
+        }
         //if (potValue.recv_angl >= 5)
         //{
         //    Debug.Log('t');
