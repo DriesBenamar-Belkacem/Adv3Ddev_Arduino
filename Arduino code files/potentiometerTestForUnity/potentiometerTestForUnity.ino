@@ -3,6 +3,7 @@
 #define FRONT 7
 #define BACK 6
 #define RESTART 11
+#define BUZZER 3
 char test;
 #define LED 13
 void setup()
@@ -14,6 +15,7 @@ void setup()
   pinMode(FRONT, INPUT_PULLUP);
   pinMode(BACK, INPUT_PULLUP);
   pinMode(RESTART, INPUT_PULLUP);
+  pinMode(BUZZER, OUTPUT);
   pinMode(LED, OUTPUT);
 }
 
@@ -50,11 +52,13 @@ void loop()
   if (data == 't')
   {
     digitalWrite(LED, HIGH);
+    tone(BUZZER, 1000);
   }
 
   if (data == 'o')
   {
     digitalWrite(LED, LOW);
+    noTone(BUZZER);
   }
 
 
