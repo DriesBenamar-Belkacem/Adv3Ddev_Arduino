@@ -5,6 +5,7 @@ using UnityEngine;
 public class PickUpCoin : MonoBehaviour
 {
     // Start is called before the first frame update
+    public AudioSource coinSound;
     void Start()
     {
 
@@ -19,6 +20,7 @@ public class PickUpCoin : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            coinSound.Play();
             GameObject.Destroy(this.gameObject);
         }
 
