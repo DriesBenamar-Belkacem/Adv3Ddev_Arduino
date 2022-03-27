@@ -26,27 +26,27 @@ void loop()
   if (digitalRead(RESTART) == LOW)
   {
     test = 'X';
-    delay(50); //debounce
+    delay(20);
   }
   if (digitalRead(RIGHT) == LOW)
   {
     test = 'R';
-    delay(50); //debounce
+    delay(20);
   }
   if (digitalRead(LEFT) == LOW)
   {
     test = 'L';
-    delay(50); //debounce
+    delay(20);
   }
   if (digitalRead(FRONT) == LOW)
   {
     test = 'F';
-    delay(50); //debounce
+    delay(20);
   }
   if (digitalRead(BACK) == LOW)
   {
     test = 'B';
-    delay(50); //debounce
+    delay(20);
   }
 
   if (data == 't')
@@ -60,38 +60,10 @@ void loop()
     digitalWrite(LED, LOW);
     noTone(BUZZER);
   }
-
-
-  if (data == 'b')
-  {
-    digitalWrite(LED, HIGH);
-    delay(250);
-    digitalWrite(LED, LOW);
-    delay(250);
-    digitalWrite(LED, HIGH);
-    delay(250);
-    digitalWrite(LED, LOW);
-    delay(250);
-    digitalWrite(LED, HIGH);
-    delay(250);
-    digitalWrite(LED, LOW);
-    delay(250);
-    digitalWrite(LED, HIGH);
-    delay(250);
-    digitalWrite(LED, LOW);
-    delay(250);
-    digitalWrite(LED, HIGH);
-    delay(250);
-    digitalWrite(LED, LOW);
-    delay(250);
-    digitalWrite(LED, HIGH);
-    delay(250);
-    digitalWrite(LED, LOW);
-    delay(250);
-
-  }
+  
   float volt = analogRead(A0);
   volt = map(volt, 0, 1023, 0, 100);
+  delay(20);
   Serial.print(volt);
   Serial.print(",");
   Serial.println(test);

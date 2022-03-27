@@ -46,10 +46,7 @@ public class SerialCommThreaded : MonoBehaviour
         {
             data_stream.Write("o");//alles opkuisen en booleans gebruiken
         }
-        //if (moveCube.Collided)
-        //{
-        //    data_stream.Write("t");//alles opkuisen en booleans gebruiken
-        //}
+        
     }
     
     void HandleInput(string inputChar)
@@ -76,5 +73,8 @@ public class SerialCommThreaded : MonoBehaviour
             Debug.Log("restarting...");
         }
     }
-
+    private void OnApplicationQuit()
+    {
+        if (data_stream != null) data_stream.Close();
+    }
 }

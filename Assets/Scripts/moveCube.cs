@@ -8,7 +8,7 @@ public class moveCube : MonoBehaviour
     public static bool right = false;
     public static bool forw = false;
     public static bool backw = false;
-    int frontBack;
+    float                                                       frontBack;
     int leftRight;
     public static bool Collided = false;
     //float heightOffset = 0.2f;
@@ -29,57 +29,40 @@ public class moveCube : MonoBehaviour
     {
 
         float y;
-        //if (rotateFans.isFlying&&rotateFans.isFlyingHigh)
-        //{
+        
         y = Mathf.PingPong(Time.time * speed, 0.2f) * 6 - 3;
-        //}
-        //else
-        //{
-        //    y = 0;
-        //}
-
-        //heightOffset+=0.01f;
+        
         count++;
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        if (right/* && !Collided*/)
+        if (right)
         {
             leftRight++;
             Debug.Log("Right");
             transform.rotation = Quaternion.Euler(0, 0, -10);
             right = false;
         }
-        if (left /*&& !Collided*/)
+        if (left)
         {
             leftRight--;
             Debug.Log("Left");
             transform.rotation = Quaternion.Euler(0, 0, +10);
             left = false;
         }
-        if (forw/* && !Collided*/)
+        if (forw)
         {
-            frontBack += 5;
+            frontBack += 2.5f;
             Debug.Log("Forwards");
             transform.rotation = Quaternion.Euler(+10, 0, 0);
             forw = false;
         }
-        if (backw/* && !Collided*/)
+        if (backw)
         {
             frontBack--;
             Debug.Log("Backwards");
             transform.rotation = Quaternion.Euler(-10, 0, 0);
 
             backw = false;
-        }
-        if (!right && !left && !forw && !backw)
-        {
-            //if (count > 5)
-            //{
-            //    //heightOffset-=0.01f;
-            //    //heightOffset = 0.2f;
-            //    count = 0;
-            //}
-
-        }
+        }        
         transform.position = new Vector3(leftRight, (potValue.recv_angl / 2.5f) + (y + 5), frontBack);
         if (Collided)
         {            
